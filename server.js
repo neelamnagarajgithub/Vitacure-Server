@@ -13,8 +13,8 @@ dotenv.config({ path: "./config.env" });
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://heal-connect-server.vercel.app/",
-    methods: ["POST", "GET"],
+    origin: "https://heal-connect.vercel.app/",
+    methods: ['POST', 'GET'],
     credentials: true,
   })
 );
