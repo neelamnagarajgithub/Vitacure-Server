@@ -11,13 +11,20 @@ const app = express();
 dotenv.config({ path: "./config.env" });
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://heal-connect.vercel.app/",
-    methods: ['POST', 'GET'],
-    credentials: true,
-  })
-);
+const whitelist = ['http://localhost:5173', 'https://heal-connect.vercel.app/'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  methods: ['POST', 'GET'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 const DB = process.env.DATABASE.replace(
   "<password>",
