@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const NurseRouter = require("./Routes/nurse-route");
 const router = require("./Routes/chatbot-route");
 const TwilioRouter = require("./Routes/Twilio-route");
+const StripeRouter=require('./Routes/stripe-route');
 const app = express();
 
 dotenv.config({ path: "./config.env" });
@@ -49,9 +50,9 @@ mongoose
 app.use("/api/nurses", NurseRouter);
 app.use("/api/chatbot", router);
 app.use("/api/user", TwilioRouter);
-
+app.use('/api',StripeRouter);
 const port = process.env.PORT || 11000;
 
 app.listen(port, () => {
-  console.log(`Server is Runniung on port ${port}`);
+  console.log(`Server is Running on port ${port}`);
 });
