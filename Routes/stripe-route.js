@@ -25,7 +25,7 @@ StripeRouter.post("/create-checkout-session", async (req, res) => {
     cancel_url: "https://heal-connect.vercel.app/user/filters",
   });
 
-  res.redirect(303, session.url);
+  res.json({id:session.id});
 });
 
 module.exports = StripeRouter;
