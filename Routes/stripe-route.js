@@ -28,7 +28,10 @@ StripeRouter.post("/create-checkout-session", async (req, res) => {
   // res.json({id:session.id,
   // url:session.url});
   
-  res.redirect(303, session.url);
+  res.json({
+    id:session.id,
+    url:session.url
+  })
 });
 
 module.exports = StripeRouter;
