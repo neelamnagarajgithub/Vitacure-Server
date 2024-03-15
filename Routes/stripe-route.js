@@ -21,8 +21,14 @@ StripeRouter.post("/create-checkout-session", async (req, res) => {
     }],
 
     mode: "payment",
-    success_url: "https://heal-connect.vercel.app/user/payment/paymentsuccess",
+    success_url: "https://heal-connect.vercel.app/user/payment/paymentsucess",
     cancel_url: "https://heal-connect.vercel.app/user/filters",
+    shipping_address_collection: {
+      allowed_countries: ['IN','US'],
+    },
+    phone_number_collection: {
+      "enabled": true,
+    },
   });
 
   // res.json({id:session.id,
