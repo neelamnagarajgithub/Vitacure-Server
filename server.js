@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const NurseRouter = require("./Routes/nurse-route");
-const router = require("./Routes/chatbot-route");
 const TwilioRouter = require("./Routes/Twilio-route");
 const StripeRouter=require('./Routes/stripe-route');
 const app = express();
@@ -18,20 +17,7 @@ app.use(cors({
   methods:['GET','POST'],
   credentials:true,
 }))
-// const whitelist = ['http://localhost:5173', 'https://heal-connect.vercel.app/'];
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   },
-//   methods: ['POST', 'GET'],
-//   credentials: true,
-// };
 
-// app.use(cors(corsOptions));
 
 const DB = process.env.DATABASE.replace(
   "<password>",
@@ -48,7 +34,6 @@ mongoose
   });
 
 app.use("/api/nurses", NurseRouter);
-app.use("/api/chatbot", router);
 app.use("/api/user", TwilioRouter);
 app.use('/api',StripeRouter);
 const port = process.env.PORT || 11000;
