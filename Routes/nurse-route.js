@@ -12,7 +12,6 @@ NurseRouter.
 NurseRouter
 .route('/:id')
 .get(getnursebyid)
-.patch(UpdateNurse)
 .delete(deleteNurse)
 
 module.exports=NurseRouter;
